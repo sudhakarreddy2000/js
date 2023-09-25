@@ -1,0 +1,405 @@
+createElement:
+
+createElement() method
+createTextNode() method
+createComment() method
+appendChild() method
+
+let x=document.createElement('h1')
+let txt=document.createTextNode("Hello Node")
+let cmt=document.createComment("commenting")
+console.log(x)
+console.log(txt)
+console.log(cmt)
+
+let newElem=document.createElement('p')
+let txt=document.createTextNode('How are you')
+newElem.appendChild(txt)
+console.log(newElem)
+
+-------------------------
+difference between var, let and const
+
+What is difference between var let and const in JavaScript?
+=>var variables can be updated and re-declared within its scope; 
+=>let variables can be updated but not re-declared; 
+=>const variables can neither be updated nor re-declared. 
+They are all hoisted to the top of their scope. 
+But while var variables are initialized with undefined , let and const variables are not initialized.
+
+	var/let/const a  ==>declaring a variable
+	a=10 ===>Assigning a value
+
+var declarations are globally scoped or function scoped while let and const are block scoped. 
+
+Hoisting is JavaScript's default behavior of moving declarations to the top.
+
+Scope:
+======
+
+Block Scope
+Before ES6 (2015), JavaScript had only Global Scope and Function Scope.
+
+ES6 introduced two important new JavaScript keywords: let and const.
+
+These two keywords provide Block Scope in JavaScript.
+
+Block scope means variables declared inside a { } block cannot be accessed from outside the block:
+
+Variables declared with the var keyword can NOT have block scope.
+Variables declared with var keyword inside a { } block can be accessed from outside the block.
+
+
+Local Scope:
+============
+Variables declared within a JavaScript function, become LOCAL to the function.
+
+// code here can NOT use carName
+
+function myFunction() {
+  let carName = "Volvo";
+  // code here CAN use carName
+}
+
+// code here can NOT use carName
+
+
+
+Function Scope:
+==============
+JavaScript has function scope: Each function creates a new scope.
+
+Variables defined inside a function are not accessible (visible) from outside the function.
+
+Variables declared with var, let and const are quite similar when declared inside a function.
+
+They all have Function Scope:
+
+function myFunction() {
+  var carName = "Volvo";   // Function Scope
+}
+
+
+Global JavaScript Variables:
+===============================
+=>A variable declared outside a function, becomes GLOBAL.
+=>Variables declared Globally (outside any function) have Global Scope.
+=>Global variables can be accessed from anywhere in a JavaScript program.
+
+let carName = "Volvo";
+// code here can use carName
+
+function myFunction() {
+// code here can also use carName
+}
+
+
+Callback hell:
+==============
+
+Callback hell is a phenomenon that happens when multiple callbacks are nested on top of each other. The two common ways of escaping the callback heare are by using promises and async/await. 
+
+
+Promise:
+A Promise is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. 
+This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+new Promise(function()){
+
+}
+
+
+
+
+var promise = new Promise(function(resolve, reject) {
+const x = "javascript"
+const y = "javascript"
+if(x === y) {
+	resolve();
+} else {
+	reject();
+}
+});
+	
+promise.then(function () {
+		console.log('Success');
+	}).catch(function () {
+		console.log('Some error has occurred');
+	});
+
+
+
+
+fetch() method:
+===============
+The fetch() method is available in the global scope that instructs the web browsers to send a request to a URL.
+
+The fetch() requires only one parameter which is the URL of the resource that you want to fetch:
+
+let response = fetch(url);
+
+The fetch() method returns a Promise so you can use the then() and catch() methods to handle it.
+
+11th Aug:
+========
+fetch('/readme.txt')
+    .then(response => response.text())
+    .then(data => console.log(data));
+
+
+
+
+spread and rest operator:
+==========================
+The JavaScript spread operator (...) allows us to quickly copy all or part of an existing array or object into another array or object.
+
+The spread operator spreads the values in an array or a string across one or more arguments. 
+
+Rest operator allows us to pass an indefinite number of arguments to function by accumulating these several values into an array.
+
+
+ let x=[1,2,3]
+ let y=[4,5,6]
+ let combine=[...x,...y]
+
+
+
+function test(...args){
+	alert('Hello '+args)
+}
+test('ravi',22,'Hyderabad','xyz.gmail.com)
+test('kumar')
+
+
+
+function myData(...args){
+console.log(args) ; // ["Marina",24,"Front-End Developer"]
+}
+myData("Marina",24,"Front-End Developer") ;
+
+
+ternary operator:
+===================
+What is a ternary operator in JavaScript?
+The conditional (ternary) operator is the only JavaScript operator that takes three operands: 
+a condition followed by a question mark ( ? ), 
+then an expression to execute if the condition is true followed by a colon ( : ), 
+and finally the expression to execute if the condition is false.
+
+var a="javascriptttt"
+b= (a!="javascript"?'False':'Right')
+alert(b)
+
+
+14th Aug:
+========
+Template Literals:
+======================
+Template literals are literals delimited with backtick (`) characters, allowing for multi-line strings, string interpolation with embedded expressions, and special constructs called tagged templates.
+Template literals are sometimes informally called template strings, because they are used most commonly for string interpolation 
+
+example:
+`string text line 1
+ string text line 2`
+
+`string text ${expression} string text`
+
+
+EXECUTION CONTEXT:
+==================
+What is JavaScript execution context?
+When the JavaScript engine scans a script file, it makes an environment called the Execution Context that handles the entire transformation and execution of the code. 
+During the context runtime, the parser parses the source code and allocates memory for the variables and functions.
+
+	there are 2 types of execution contexts
+		1)Global execution context
+		2)funtion execution context
+
+The execution context decides what particular piece of code has access to variables, functions, objects, etc.
+1. Global Execution Context (GEC)
+Whenever the code runs for the first time or when the code is not inside any function then it gets into the global execution context. There is only one global execution context throughout the execution of code.
+
+In the case of browser global execution context does 2 things
+Create a ‘window’ object.
+The window object is referenced to ‘this’ keyword.
+
+
+Execution Context Phases
+There are mainly two phases of the execution context.
+	=>Creation
+	=>Execution
+
+Creation phase:
+==============
+There are several things that happen here before the function execution happen.
+At first, a connection to the outer environment is created for each function or variables which is what form a scope chain. This tells the execution context what should it contain and where should it look for resolving the reference for function and values for variables.
+For the global environment, the outer environment is null. However, all environments within the global, have the global environment as its outer environment.
+If function ‘a’, contained in function ‘b’, that means ‘a’ has an outer environment ‘b’.
+2. After scanning the scope chain an environment record is created where the creation and reference for global context(would be a window in a web browser), variable, function, and function arguments are done in memory.
+3. At last value of ‘this’ keyword is determined (In the case of the global execution context, ‘this’ refers to the window) inside each execution context created in the 1st step.
+Execution Phase
+This is the phase where the code starts to run in the execution context formed in the creation phase and variable values are assigned line by line.
+As the execution start, the engine looks for reference to execute the function in its creation phase object. If it doesn’t find it in its own, it will continue to move up the scope chain until it reaches the global environment.
+If no references are found in the global environment it will return an error. However, if a reference is found and the function is executed correctly, the execution context of this particular function will be popped off the stack and the engine will move onto the next function, where their execution context will be added to the stack and executed, and so on.
+
+JavaScript Hoisting:
+======================
+Hoisting is nothing but, Mechanism of giving/allocating memory to variable in the creation 
+Hoisting in JavaScript is a behavior in which a function or a variable can be used before declaration. 
+
+Partially hoisted:
+When the value is not given in creation phase is called partially hoisted.
+Variables are partially hoisted
+where as functions are fully hoisted
+
+
+Destructuring:
+===============
+
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+// old way
+const students=['anil','sunil','kamal','sriya']
+const s1=students[0]
+const s2=students[1]
+
+
+
+//new way
+const students=['anil','sunil','kamal','sriya']
+
+const [s1, s2, s3] = students
+
+---------------
+getElementByTagName:
+
+<body>
+    <h1>javascript</h1>
+    <h1>Innomatis</h1>
+
+    <h2 id="txt"></h2>
+    <script>
+        const collection = document.getElementsByTagName("h1");
+        collection[1].innerHTML = "hello"
+                //document.getElementById("txt").innerHTML = collection[0].innerHTML;
+    </script>
+</body>
+
+-------------------
+
+<body>
+    <h2>javascript</h2>
+    <h2>React</h2>
+    <h2>Angular</h2>
+
+  <button onclick="demo()">change</button>
+    <script>
+        function demo(){
+        const collection = document.getElementsByTagName("h2");
+        collection[2].innerHTML = "Dynamic Program"
+        }
+    </script>
+</body>
+
+------------------------
+
+getElementByClassName():
+
+<body>
+    <h2 class="txt">javascript</h2>
+    <h2 class="txt">React</h2>
+    <h2 class="txt">Angular</h2>
+
+  <button onclick="demo()">change</button>
+    <script>
+        function demo(){
+        const collection = document.getElementsByClassName("txt");
+        collection[1].innerHTML = "Single Page Application"
+        }
+    </script>
+</body>
+------------------
+querySelector:
+<body>
+    <h2 class="txt">javascript</h2>
+    <h2 class="txt">React</h2>
+    <h2 class="txt">Angular</h2>
+
+  <button onclick="demo()">change</button>
+    <script>
+        function demo(){
+        // const collection = document.querySelector('h2');
+        // collection.innerHTML = "Single Page Application"
+
+        // const collection = document.querySelector('.txt');
+        // collection.innerHTML = "Single Page Application"
+
+        const collection = document.querySelectorAll('h2');
+        collection[1].innerHTML = "Single Page Application"
+        }
+    </script>
+</body>
+
+-----------------------
+<body>
+    <h2>javascript</h2>
+
+    <script>
+let x=document.createElement('h1')
+let txt=document.createTextNode("Hello Node")
+x.appendChild(txt)
+console.log(x)
+
+    </script>
+</body>
+
+-----------------------
+
+
+<body>
+    <h2>javascript</h2>
+<button onclick="demo()">append data</button>
+    <script>
+        function demo(){
+const txt = document.createElement("h3");
+txt.innerText = "Java script is client side";
+
+// Append to body:
+document.body.appendChild(txt);
+        }
+    </script>
+</body>
+
+-------------------------
+
+<body>
+    <h2>javascript</h2>
+<button onclick="demo()">append data</button>
+    <script>
+        function demo(){
+const txt = document.createElement("h3");
+txt.innerText = prompt("Enter data here")
+// Append to body:
+document.body.appendChild(txt);
+        }
+    </script>
+</body>
+
+-------------------------------
+<body>
+    <h2>javascript</h2>
+    <div id="parent"></div>
+    <button onclick="demo()">append data</button>
+    <script>
+        function demo() {
+            let parent = document.querySelector('#parent');
+            for (let i = 1; i <= 9; i++) {
+                let list = document.createElement('li');
+                list.innerText = 'client side code';
+                parent.appendChild(list);
+            }
+        }
+    </script>
+</body>
+
+----------------------
